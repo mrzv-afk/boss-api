@@ -1,0 +1,27 @@
+repositories {
+    maven { url "https://repo.panda-lang.org/releases" }
+}
+
+dependencies {
+    implementation project(":boss-api")
+
+    implementation libs.litecommands.core
+    implementation libs.litecommands.bukkit
+}
+
+processResources {
+    inputs.property "version", project.version
+    inputs.property "main", "ru.morozov.bosses.plugin"
+
+    filesMatching("plugin.yml") {
+        expand "version": project.version,
+                "main": "ru.morozov.bosses.plugin"
+    }
+}
+
+tasks {
+    shadowJar {
+        relocate 'dev.rollczi.litecommands', 'ru.morozov.bosses.plugin.libs.litecommands'
+        archiveFileName = 'BossesPlugin-${project.version}.jar'
+    }
+}

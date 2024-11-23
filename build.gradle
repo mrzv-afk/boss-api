@@ -1,0 +1,86 @@
+plugins {
+    id "com.github.johnrengelman.shadow" version "7.0.0" apply false
+    id "io.papermc.paperweight.userdev" version "1.5.5" apply false
+    id "xyz.jpenilla.run-paper" version "2.1.0"
+}
+
+allprojects {
+    group = 'ru.morozov'
+    version = '1.0.0-SNAPSHOT'
+}
+
+configure(subprojects) {
+    apply plugin: "java"
+    apply plugin: "java-library"
+    apply plugin: "com.github.johnrengelman.shadow"
+    apply plugin: "io.papermc.paperweight.userdev"
+    apply plugin: "xyz.jpenilla.run-paper"
+
+    apply from: new File(rootDir, "libs.gradle")
+
+    repositories {
+        mavenCentral()
+        mavenLocal()
+
+        maven { url "https://papermc.io/repo/repository/maven-public/" }
+        maven { url "https://repo.dmulloy2.net/repository/public/" }
+    }
+
+    dependencies {
+        paperweightDevelopmentBundle libs.bukkit
+
+        compileOnly libs.protocollib
+
+        implementation libs.jdbi.core
+        implementation libs.jdbi.sql2o
+        implementation libs.jdbi.caffeine
+
+        compileOnly libs.jetbrains
+
+        implementation libs.hikari
+
+        implementation libs.cache
+        implementation libs.guice
+
+        compileOnly libs.lombok
+        annotationProcessor libs.lombok
+    }
+
+    tasks {
+        assemble {
+            dependsOn(reobfJar)
+        }
+
+        shadowJar {
+            exclude 'META-INF/DEPENDENCIES'
+            exclude 'META-INF/LICENSE'
+            exclude 'META-INF/LICENSE.txt'
+            exclude 'META-INF/NOTICE'
+            exclude 'META-INF/NOTICE.txt'
+            exclude 'META-INF/maven/**'
+
+            mergeServiceFiles {
+                include 'META-INF/impl/**'
+            }
+        }
+
+        tasks.withType(JavaCompile).configureEach {
+            options.encoding = 'UTF-8'
+        }
+
+        test {
+            useJUnitPlatform()
+        }
+    }
+
+    java {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    tasks {
+        build {
+            dependsOn(shadowJar)
+        }
+    }
+}

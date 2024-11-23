@@ -1,0 +1,6 @@
+main: "ru.morozov.bosses.plugin.BossesPlugin"
+name: "BossesTestPlugin"
+
+version: "${version}"
+author: "morozov"
+depend: [ "ProtocolLib" ]

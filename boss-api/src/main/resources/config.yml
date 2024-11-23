@@ -1,0 +1,55 @@
+database:
+  file: "database.db"
+
+bosses:
+  summoner:
+    entity-type: ZOMBIE
+    max-health: 1500
+    damage: 20
+    custom-name: "<green><bold>ПРИЗЫВАТПЕЛЬ"
+    time-to-spawn:
+      zone: "Europe/Moscow"
+      values:
+        - "12:00"
+    locations:
+      - 'world, 0, 100, 0' # без yaw, pitch
+      - 'world, 0, 100, 0, 0, 0' # с yaw, pitch
+    equipment:
+      HEAD:
+        material: 'DIAMOND_HELMET'
+        enchantments:
+          PROTECTION_ENVIRONMENTAL: 4
+          DURABILITY: 3
+    attack-entities:
+      - "PLAYER"
+      - "WOLF"
+      - "PARROT"
+      - "OCELOT"
+    abilities:
+      summoners:
+        count: '1-3'
+        entity-type: ZOMBIE
+        baby: true
+  destroyer:
+    entity-type: ZOMBIE
+    max-health: 1000
+    damage: 7
+    custom-name: "#BBBBB&lРАЗРУШИТЕЛЬ"
+    locations:
+      - 'world, 0, 100, 0' # без yaw, pitch
+      - 'world, 0, 100, 0, 0, 0' # с yaw, pitch
+    equipment:
+      MAINHAND:
+        material: 'DIAMOND_HELMET'
+        enchantments:
+          PROTECTION_ENVIRONMENTAL: 4
+          DURABILITY: 3
+    attack-entities:
+      - "PLAYER"
+    abilities:
+      summoners:
+        count: '1-3'
+        entity-type: ZOMBIE
+        baby: true
+
+messages:
