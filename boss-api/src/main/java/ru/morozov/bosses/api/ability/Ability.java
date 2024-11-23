@@ -1,7 +1,7 @@
-package ru.saydov.bosses.api.ability;
+package ru.morozov.bosses.api.ability;
 
 /**
- * @author saydov
+ * @author morozov
  */
 public interface Ability {
 

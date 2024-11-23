@@ -1,10 +1,10 @@
-package ru.saydov.bosses.api.ability.trigger;
+package ru.morozov.bosses.api.ability.trigger;
 
 import lombok.NonNull;
 import org.bukkit.entity.LivingEntity;
 
 /**
- * @author saydov
+ * @author morozov
  */
 @FunctionalInterface
 public interface TriggerCondition {

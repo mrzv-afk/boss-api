@@ -1,4 +1,4 @@
-package ru.saydov.bosses.api.ability.trigger;
+package ru.morozov.bosses.api.ability.trigger;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -8,7 +8,7 @@ import lombok.experimental.FieldDefaults;
 import org.bukkit.entity.LivingEntity;
 
     /**
-     * @author saydov
+     * @author morozov
      */
 @Getter
 @AllArgsConstructor
